@@ -47,13 +47,11 @@
                     //跳转到苹果下载地址
                     var url = 'https://xbl-aliyun.oss-cn-hongkong.aliyuncs.com/xbs_IOS/xinbaili.plist';
                     var fileUrl = 'itms-services://?action=download-manifest&url=' + url;
-                    // location.href = fileUrl;
-                    // openAppWin(fileUrl);
                     startDownLoad(fileUrl);
 
                 } else if (Terminal.platform.ipad) {
                     //跳转到ipad下载地址
-                    // location.href = "";
+                    startDownLoad(fileUrl);
                 }
             };
 
