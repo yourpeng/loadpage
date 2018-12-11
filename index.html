@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>客户端下载</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <section class="page-wrap">
+        <!-- <a class="loadbtn" id="loadbtn" href="itms-services://?action=download-manifest&url=https://xxx/test.plist">点击下载</a> -->
+        <div class="qrcode-wrap">
+            <div class="qrcode" id="qrcode"></div>
+            <p>手机扫码下载APP</p>
+        </div>
+    </section>
+
+    <script src="./js/qrcode.min.js"></script>
+    <script>
+
+        var Terminal = {
+            //识别设备
+            platform: function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    android: u.indexOf('android') > -1 || u.indexOf('Linux') > -1,
+                    iPhone: u.indexOf('iPhone') > -1,
+                    ipad: u.indexOf('iPad') > -1,
+                    wechat: u.indexOf('MicroMessenger') > -1
+ 
+                };
+            }(),
+            language:(navigator.browserLanguage||navigator.language).toLowerCase()
+        }
+
+        function linkToLoadPage (){
+            if (Terminal.platform.android) {
+                if (!(Terminal.platform.wechat)) {
+                    //跳转到安卓下载地址
+                    // location.href = "http:/***/app/tenants/tenants.apk";
+                }
+            } else if (Terminal.platform.iPhone) {
+                //跳转到苹果下载地址
+                var url = 'https://xbl-aliyun.oss-cn-hongkong.aliyuncs.com/xbs_IOS/xinbaili.plist';
+                var fileUrl = 'itms-services://?action=download-manifest&url=' + url;
+                // location.href = fileUrl;
+                // openAppWin(fileUrl);
+                startDownLoad(fileUrl);
+
+            } else if (Terminal.platform.ipad) {
+                //跳转到ipad下载地址
+                // location.href = "";
+            }
+        };
+
+        function startDownLoad(url){
+            var a = document.createElement('a');
+            a.id = 'loadbtn';
+            a.href = url;
+            a.innerHTML = '点击下载';
+            document.querySelector('body').append(a);
+            var btn = document.getElementById('loadbtn');
+            btn.click();
+            btn.remove();
+        };
+
+        
+        var search = window.location.search;
+        var qrcode = new QRCode("qrcode");
+        qrcode.makeCode('http://47.75.89.133:8080/xinbaili/?download=true');
+
+        if(search && /download=true/.test(search)){
+            linkToLoadPage();
+        };
+
+    </script>
+    
+</body>
+</html>

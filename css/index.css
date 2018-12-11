@@ -1,0 +1,10 @@
+*{margin: 0;padding: 0;}
+html, body{width: 100%;height: 100%;overflow: hidden;}
+.page-wrap{width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;background: url(../images/bg.jpg) no-repeat center top;background-size: cover;}
+.page-wrap .loadbtn{display: inline-block;line-height: 30px;border-radius: 4px;background: rgb(85, 177, 253);color: #fff;padding: 0 20px;text-decoration: none;cursor: pointer;}
+/* .page-wrap .loadbtn:hover{opacity: .7;} */
+
+.qrcode-wrap{width: 80%;margin: 0 auto;position: relative;text-align: center;}
+.qrcode-wrap .qrcode{padding: 10px;background: #fff;display: inline-block;box-sizing: border-box;width: 100%;}
+.qrcode-wrap img{width: 100%;}
+.qrcode-wrap p{position: absolute;top: 100%;text-align: center;width: 100%;left: 0;right: 0;margin-top: 10px;color: #fff;}
